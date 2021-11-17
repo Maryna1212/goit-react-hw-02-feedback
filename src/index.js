@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+export { default } from './components/Counter';
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
