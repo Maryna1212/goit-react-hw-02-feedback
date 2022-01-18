@@ -1,7 +1,7 @@
 import React from 'react';
-import Counter from './components/Counter';
+import Section from './components/Section';
 
-const App = () => <Counter />;
+const App = () => <Section />;
 
 export default App;
 

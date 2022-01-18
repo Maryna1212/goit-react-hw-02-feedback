@@ -1,8 +1,9 @@
 import React from 'react';
-import Buttons from './buttons';
-// import 'Counter.css';
+import PropTypes from 'prop-types';
+import Buttons from '../buttons';
 
-class Counter extends React.Component {
+
+class Section extends React.Component {
   static defaultProps = {
     initialValue: 0,
   };
@@ -31,7 +32,19 @@ class Counter extends React.Component {
     }));
   };
 
+  countTotalFeedback = () => {
+    return this.state.good + this.state.neutral + this.state.bad;
+  };
+
+  countPositiveFeedbackPercentage = () => { 
+    return Math.floor((this.state.good * 100) / this.countTotalFeedback());
+  }
+
   render() {
+    const { good, neutral, bad } = this.state;
+    const total = this.countTotalFeedback();
+    const percentage = this.countPositiveFeedbackPercentage();
+
     return (
       <div className="Counter">
         <h1 className="">Please leave feedback</h1>
@@ -43,21 +56,21 @@ class Counter extends React.Component {
         <h2>Statistics</h2>
         <ul className="Statistics__list">
           <li>
-            <span className="Statistics__value">Good:{this.state.good}</span>
+            <span className="Statistics__value">Good:{good}</span>
           </li>
           <li>
             <span className="Statistics__value">
-              Neutral:{this.state.neutral}
+              Neutral:{neutral}
             </span>
           </li>
           <li>
-            <span className="Statistics__value">Bad:{this.state.bad}</span>
+            <span className="Statistics__value">Bad:{bad}</span>
           </li>
           <li>
-            <span className="Statistics__value">Total:</span>
+            <span className="Statistics__value">Total:{total}</span>
           </li>
           <li>
-            <span className="Statistics__value">Positive feedback:</span>
+            <span className="Statistics__value">Positive feedback:{percentage}%</span>
           </li>
         </ul>
       </div>
@@ -65,4 +78,8 @@ class Counter extends React.Component {
   }
 }
 
-export default Counter;
+export default Section;
+
+Section.propTypes = {
+
+};
